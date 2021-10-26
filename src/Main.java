@@ -14,13 +14,18 @@ public class Main extends Application{
         primaryStage.setTitle("Demo");
         Group root = new Group();
         //Pane pane = new  Pane(root);
-        Scene scene = new Scene(root, 600, 400);
-        primaryStage.setScene(scene);
+        //Scene scene = new Scene(root, 600, 400);
+        GameScene theScene = new GameScene(root);
+        primaryStage.setScene(theScene);
         primaryStage.show();
+        System.out.println(theScene.getTheCam());
     }
     public static void main(String[] args) {
         launch(args);
         // write your code here
+
+        //GameScene theScene = new GameScene(new Camera(10,50),"desert");
+
 
     }
 }
