@@ -1,3 +1,5 @@
+
+import javafx.animation.AnimationTimer;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -6,28 +8,46 @@ public class GameScene extends Scene {
     private Camera theCam;
     private StaticThing left;
     private StaticThing right;
+    private Hero hero;
 
     public Camera getTheCam() {
         return theCam;
     }
 
     public GameScene(Group parent){
-        super(parent,600,400);
-        left = new StaticThing(80,600,"C://Runner//desert.png");
-        right= new StaticThing(80,600,"C://Runner//desert.png");
-        this.theCam=new Camera(1000,0);
+        super(parent,500,400);
+
+        this.theCam=new Camera(0,0);
+
+
+        hero = new Hero("C:\\Runner\\heros.png",0);
+
+        left = new StaticThing(theCam.getX()%800,theCam.getX()%800+800 , theCam.getY()%400,theCam.getY()%400+400-theCam.getY()%400, 0,"C://Runner//desert.png");
+        right= new StaticThing(0,theCam.getX()%800, theCam.getY()%400,theCam.getY()%400+400-theCam.getY()%400,800-theCam.getX()%800,"C://Runner//desert.png");
 
         parent.getChildren().add(left.getImg());
         parent.getChildren().add(right.getImg());
+        parent.getChildren().add(hero.getImg());
 
+        timer.start();
 
     }
 
-    public void render(){
-        double xCam=theCam.getX();
-        right.getImg().setX(xCam%left.getX());
-        left.getImg().setViewport(new Rectangle2D(right.getX()-xCam%right.getX(),0,xCam% right.getX(),right.getY()));
+    public void update(long time){
+        System.out.println(theCam.getX());
+        left.getImg().setViewport(new Rectangle2D(theCam.getX()%800, theCam.getY()%400, theCam.getX()%800+800,theCam.getY()%400+400-theCam.getY()%400));
+        right.getImg().setViewport(new Rectangle2D(0,theCam.getY()%400,theCam.getX()%800 ,theCam.getY()%400+400-theCam.getY()%400));
+
+        right.getImg().setX(800-theCam.getX()%800);
     }
 
-    public static void update(long l){}
+    AnimationTimer timer = new AnimationTimer()
+    {
+        public void handle(long time){
+            hero.update(time);
+            theCam.update(time);
+            update(time);
+        }
+    };
+
 }
