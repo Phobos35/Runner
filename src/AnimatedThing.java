@@ -4,6 +4,7 @@ import javafx.scene.image.ImageView;
 
 public abstract class AnimatedThing {
     private double x=0,y=250;
+    private double vitesse;
     private ImageView img;
     private Integer attitude;
 
@@ -11,7 +12,7 @@ public abstract class AnimatedThing {
     private long frameDuration=100000000;
     private Integer maximumIndex;
     private Integer size;
-    private  Integer offset=100;
+    private  Integer offset=200;
     private long time2= 0;
 
     public AnimatedThing(String fileName, int index){
@@ -31,12 +32,23 @@ public abstract class AnimatedThing {
             img.setX(offset);
             img.setY(250);
             time2=time;
-            x++;
+
+            vitesse=50;
+            x+= vitesse;
         }
+
 
     }
 
     public ImageView getImg() {
         return img;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
     }
 }

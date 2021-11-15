@@ -17,7 +17,7 @@ public class GameScene extends Scene {
     public GameScene(Group parent){
         super(parent,500,400);
 
-        this.theCam=new Camera(0,0);
+        this.theCam=new Camera(100,0);
 
 
         hero = new Hero("C:\\Runner\\heros.png",0);
@@ -35,8 +35,8 @@ public class GameScene extends Scene {
 
     public void update(long time){
         System.out.println(theCam.getX());
-        left.getImg().setViewport(new Rectangle2D(theCam.getX()%800, theCam.getY()%400, theCam.getX()%800+800,theCam.getY()%400+400-theCam.getY()%400));
-        right.getImg().setViewport(new Rectangle2D(0,theCam.getY()%400,theCam.getX()%800 ,theCam.getY()%400+400-theCam.getY()%400));
+        left.getImg().setViewport(new Rectangle2D(theCam.getX()%800, theCam.getY()%400, 800,400));
+        right.getImg().setViewport(new Rectangle2D(0,theCam.getY()%400,800 ,400));
 
         right.getImg().setX(800-theCam.getX()%800);
     }
@@ -45,7 +45,7 @@ public class GameScene extends Scene {
     {
         public void handle(long time){
             hero.update(time);
-            theCam.update(time);
+            theCam.update(time,hero);
             update(time);
         }
     };

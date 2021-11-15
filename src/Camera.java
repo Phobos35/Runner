@@ -1,18 +1,24 @@
 public class Camera {
-    private Integer x,y;
-    private long frameDuration=1000000;
+    private double x,y;
+    private long frameDuration=100000000;
     private long time2= 0;
+    private double acceleration=0;
+    private double k=10;
+    private double m=10;
+    private double vitesse=0;
+    private  double f=12;
 
-    public Camera(Integer x, Integer y){
+
+    public Camera(double x, double y){
         this.x=x;
         this.y=y;
     }
 
-    public Integer getX() {
+    public double getX() {
         return x;
     }
 
-    public Integer getY() {
+    public double getY() {
         return y;
     }
 
@@ -20,15 +26,12 @@ public class Camera {
         this.x = x;
     }
 
-    public void update(long time){
-        /*if (time-time2>frameDuration) {
-            x += 100;
-            x=x%800;
-            time2=time;
-        }*/
-        x+=5;
+    public void update(long time, Hero hero){
 
-
+        acceleration=k/m*(hero.getX()-x)-f/m*vitesse;
+        vitesse+=acceleration*0.1;
+        x+=vitesse*0.1;
+        hero.setOffset((int)hero.getX()- (int)x+100);
 
     }
 
