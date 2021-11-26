@@ -17,7 +17,7 @@ public class GameScene extends Scene {
     public GameScene(Group parent){
         super(parent,500,400);
 
-        this.theCam=new Camera(100,0);
+        this.theCam=new Camera(00,0);
 
 
         hero = new Hero("C:\\Runner\\heros.png",0);

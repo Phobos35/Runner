@@ -1,24 +1,24 @@
 // add any usefull package line
 
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class Main extends Application{
 
     public void start(Stage primaryStage){
+
         primaryStage.setTitle("Demo");
         Group root = new Group();
+
         //Pane pane = new  Pane(root);
         //Scene scene = new Scene(root, 600, 400);
-        GameScene theScene = new GameScene(root);
+
+        GameScene theScene = new GameScene(root);   //Création de la Game scene
         primaryStage.setScene(theScene);
         primaryStage.show();
-        System.out.println(theScene.getTheCam());
+
+        System.out.println(theScene.getTheCam());  // test por savoir le comporetement de la caméra est le bon
     }
     public static void main(String[] args) {
         launch(args);
